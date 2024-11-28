@@ -19,7 +19,7 @@ import { BookNa } from "../models";
 })
 export class BookNewComponent implements OnDestroy {
   private router = inject(Router);
-  private form = inject(FormBuilder).group({
+  form = inject(FormBuilder).group({
     isbn: ["", [Validators.required, Validators.minLength(3)]],
     title: ["", Validators.required],
     author: ["", Validators.required],
