@@ -5,14 +5,13 @@ import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommonComponentsModule } from './common-components/common-components.module';
+
 import { AboutComponent } from './about/about.component';
 
 @NgModule({ declarations: [AppComponent],
     bootstrap: [AppComponent], imports: [BrowserModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        HammerModule,
-        CommonComponentsModule,
-        AppRoutingModule, AboutComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
+    FormsModule,
+    BrowserAnimationsModule,
+    HammerModule,
+    AppRoutingModule, AboutComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
