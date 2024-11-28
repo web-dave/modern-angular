@@ -10,12 +10,11 @@ import { BookRoutingModule } from './book-routing.module';
 import { BookComponent } from './book.component';
 import { BookCardComponent } from './book-card/book-card.component';
 
-@NgModule({ declarations: [
-        BookComponent,
+@NgModule({
+    imports: [BookRoutingModule, FormsModule, CommonModule, ReactiveFormsModule, BookComponent,
         BookListComponent,
         BookDetailComponent,
         BookEditComponent,
         BookNewComponent,
-        BookCardComponent
-    ], imports: [BookRoutingModule, FormsModule, CommonModule, ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        BookCardComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class BookModule {}
