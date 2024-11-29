@@ -6,7 +6,18 @@
         <button routerLink="new" class="m-top"><span>➕</span>New</button>
       </small>
     }
-    <ws-book-card [book]="book"></ws-book-card>
+    @defer (on viewport) {
+      <ws-book-card [book]="book"></ws-book-card>
+    } @placeholder {
+      <label for="">loading</label>
+    }
+    @if ($last) {
+      <ws-book-footer />
+      @defer (on viewport) {
+        <h1>Hallo</h1>
+      } @placeholder {
+        <label for="">;kjh</label>
+      }
+    }
   }
 </div>
-<!-- <ws-book-detail [isbn]="foo" /> -->
