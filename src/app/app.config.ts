@@ -8,7 +8,12 @@ import {
   provideExperimentalZonelessChangeDetection,
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { BrowserModule, HammerModule } from "@angular/platform-browser";
+import {
+  BrowserModule,
+  HammerModule,
+  provideClientHydration,
+  withEventReplay,
+} from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter, withComponentInputBinding } from "@angular/router";
 import appRoutes from "./app.routes";
@@ -20,5 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideRouter(appRoutes, withComponentInputBinding()),
     provideExperimentalZonelessChangeDetection(),
+    provideClientHydration(withEventReplay()),
   ],
 };
