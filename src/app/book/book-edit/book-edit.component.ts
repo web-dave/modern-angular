@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnDestroy, OnInit, inject } from "@angular/core";
+import { Component, DestroyRef, OnDestroy, OnInit, inject, input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { switchMap } from "rxjs/operators";
@@ -17,13 +17,13 @@ export class BookEditComponent implements OnInit, OnDestroy {
   private bookService = inject(BookApiService);
   private dRef = inject(DestroyRef);
 
-  @Input() isbn: string = "";
+  readonly isbn = input<string>("");
   sink = new Subscription();
   book: Book = new BookNa();
 
   ngOnInit() {
     this.bookService
-      .getByIsbn(this.isbn)
+      .getByIsbn(this.isbn())
       .pipe(takeUntilDestroyed(this.dRef))
       .subscribe((book) => (this.book = book));
   }

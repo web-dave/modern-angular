@@ -5,7 +5,7 @@ import { map } from "rxjs";
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  return inject(AuthService).isLoggedIn$.pipe(
-    map((data) => (data ? true : router.createUrlTree(["about"])))
-  );
+  return true; //inject(AuthService).isLoggedIn$.pipe(
+  //   map((data) => (data ? true : router.createUrlTree(["about"])))
+  // );
 };

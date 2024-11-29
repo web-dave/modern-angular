@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Book, BookNa } from '../models';
 import { RouterLink } from '@angular/router';
 
@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
     imports: [RouterLink]
 })
 export class BookCardComponent {
-  @Input() book: Book = new BookNa();
+  readonly book = input<Book>(new BookNa());
 }

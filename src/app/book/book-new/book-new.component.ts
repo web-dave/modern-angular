@@ -5,12 +5,15 @@ import {
   Validators,
   FormsModule,
   ReactiveFormsModule,
+  FormControl,
+  NonNullableFormBuilder,
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { tap } from "rxjs/operators";
 import { BookApiService } from "../book-api.service";
-import { BookNa } from "../models";
+import { Book, BookNa } from "../models";
+import { isbn } from "./isbn.validator";
 
 @Component({
   selector: "ws-book-new",
@@ -19,8 +22,8 @@ import { BookNa } from "../models";
 })
 export class BookNewComponent implements OnDestroy {
   private router = inject(Router);
-  form = inject(FormBuilder).group({
-    isbn: ["", [Validators.required, Validators.minLength(3)]],
+  form = inject(NonNullableFormBuilder).group({
+    isbn: ["", [Validators.required, Validators.minLength(3)], [isbn()]],
     title: ["", Validators.required],
     author: ["", Validators.required],
     abstract: [""],
@@ -36,7 +39,7 @@ export class BookNewComponent implements OnDestroy {
   }
 
   create() {
-    const book: any = { ...new BookNa(), ...this.form.value };
+    const book: Book = { ...new BookNa(), ...this.form.value };
     this.sink.add(
       this.bookService
         .create(book)

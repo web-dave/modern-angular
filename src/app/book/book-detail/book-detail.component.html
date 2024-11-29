@@ -1,14 +1,15 @@
-@if (book()) {
+@let myBook = book.value();
+@if (myBook) {
   <div class="book-detail-screen">
     <a href="/books"><span>⬅️ </span>Back to books</a
-    ><img [src]="book()?.cover" [alt]="book()?.title" />
-    <h2>{{ book()?.title }}</h2>
-    <h3>{{ book()?.subtitle }}</h3>
-    <div class="text-meta">by {{ book()?.author }}</div>
-    <small>{{ book()?.isbn }} | {{ book()?.numPages }} pages</small>
-    <h2 class="m-top m-bottom">{{ book()?.price }}</h2>
+    ><img [src]="myBook.cover" [alt]="myBook.title" />
+    <h2>{{ myBook.title }}</h2>
+    <h3>{{ myBook.subtitle }}</h3>
+    <div class="text-meta">by {{ myBook.author }}</div>
+    <small>{{ myBook.isbn }} | {{ myBook.numPages }} pages</small>
+    <h2 class="m-top m-bottom">{{ myBook.price }}</h2>
     <p class="m-top">
-      {{ book()?.abstract }}
+      {{ myBook.abstract }}
     </p>
     <a class="m-top" [routerLink]="['edit']">
       <button><span>✏️</span>Edit</button>
