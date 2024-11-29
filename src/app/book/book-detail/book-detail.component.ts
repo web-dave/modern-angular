@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  inject,
+  signal,
+} from "@angular/core";
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { NEVER, Observable } from "rxjs";
 import { exhaustMap, switchMap, tap } from "rxjs/operators";
@@ -10,17 +18,20 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 @Component({
   selector: "ws-book-detail",
   templateUrl: "book-detail.component.html",
-  imports: [RouterLink, AsyncPipe],
+  imports: [RouterLink],
 })
 export class BookDetailComponent implements OnInit {
   private router = inject(Router);
   private bookService = inject(BookApiService);
+  book = signal<Book | undefined>(undefined);
 
   @Input() isbn: string = "";
 
   public book$: Observable<Book> = NEVER;
   ngOnInit(): void {
-    this.book$ = this.bookService.getByIsbn(this.isbn);
+    this.bookService
+      .getByIsbn(this.isbn)
+      .subscribe((data) => this.book.set(data));
   }
 
   remove() {

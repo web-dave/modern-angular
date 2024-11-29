@@ -1,5 +1,5 @@
 <div class="book-list">
-  @for (book of books$ | async; track book) {
+  @for (book of books(); track book) {
     @if ($first) {
       <small class="text-meta">
         Showing {{ $count }} books.
