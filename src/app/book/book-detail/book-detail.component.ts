@@ -29,9 +29,9 @@ export class BookDetailComponent {
 
   book = rxResource<Book, string>({
     request: this.isbn,
-    loader: ({ request: isbn }) => {
+    loader: (param) => {
       this.status = "loading";
-      return this.bookService.getByIsbn(isbn).pipe(
+      return this.bookService.getByIsbn(param.request).pipe(
         tap({
           error: () => (this.status = "error"),
           next: () => (this.status = "complete"),
